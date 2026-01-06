@@ -474,6 +474,18 @@ files = [
 ]
 
 [[package]]
+name = "et-xmlfile"
+version = "2.0.0"
+description = "An implementation of lxml.xmlfile for the standard library"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "et_xmlfile-2.0.0-py3-none-any.whl", hash = "sha256:7a91720bc756843502c3b7504c77b8fe44217c85c537d85037f0f536151b2caa"},
+    {file = "et_xmlfile-2.0.0.tar.gz", hash = "sha256:dab3f4764309081ce75662649be815c4c9081e88f0837825f90fd28317d4da54"},
+]
+
+[[package]]
 name = "fastjsonschema"
 version = "2.21.1"
 description = "Fastest Python implementation of JSON schema"
@@ -1168,6 +1180,21 @@ files = [
     {file = "numpy-2.2.4-pp310-pypy310_pp73-win_amd64.whl", hash = "sha256:b4adfbbc64014976d2f91084915ca4e626fbf2057fb81af209c1a6d776d23e3d"},
     {file = "numpy-2.2.4.tar.gz", hash = "sha256:9ba03692a45d3eef66559efe1d1096c4b9b75c0986b5dff5530c378fb8331d4f"},
 ]
+
+[[package]]
+name = "openpyxl"
+version = "3.1.5"
+description = "A Python library to read/write Excel 2010 xlsx/xlsm files"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "openpyxl-3.1.5-py2.py3-none-any.whl", hash = "sha256:5282c12b107bffeef825f4617dc029afaf41d0ea60823bbb665ef3079dc79de2"},
+    {file = "openpyxl-3.1.5.tar.gz", hash = "sha256:cf0e3cf56142039133628b5acffe8ef0c12bc902d2aadd3e0fe5878dc08d1050"},
+]
+
+[package.dependencies]
+et-xmlfile = "*"
 
 [[package]]
 name = "packaging"
@@ -2386,6 +2413,18 @@ files = [
 typing_extensions = ">=4.14.0"
 
 [[package]]
+name = "types-tabulate"
+version = "0.9.0.20241207"
+description = "Typing stubs for tabulate"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "types_tabulate-0.9.0.20241207-py3-none-any.whl", hash = "sha256:b8dad1343c2a8ba5861c5441370c3e35908edd234ff036d4298708a1d4cf8a85"},
+    {file = "types_tabulate-0.9.0.20241207.tar.gz", hash = "sha256:ac1ac174750c0a385dfd248edc6279fa328aaf4ea317915ab879a2ec47833230"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.15.0"
 description = "Backported and Experimental Type Hints for Python 3.9+"
@@ -2460,30 +2499,35 @@ zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
 name = "virtual-ecosystem"
-version = "0.1.1a5"
+version = "0.1.1a14"
 description = "An holistic ecosystem simulation model."
 optional = false
-python-versions = ">=3.10,<3.13"
+python-versions = ">=3.11"
 groups = ["main"]
 files = []
 develop = false
 
 [package.dependencies]
-dask = "^2023.6.0"
-dpath = "^2.0.6"
-jsonschema = "^4.14.0"
-netcdf4 = "^1.6.5"
-numpy = "^2.0"
-pint = "^0.24.1"
-scipy = "^1.9.0"
-Shapely = "^2.0"
-tomli-w = "^1.0.0"
-tqdm = "^4.66.2"
-xarray = "^2024.06.0"
+dask = ">2023.6"
+dpath = ">2.0"
+netcdf4 = ">1.6"
+numpy = ">2.0"
+openpyxl = ">3.1"
+pint = ">0.24"
+pydantic = ">=2.12.0,<3.0.0"
+pyrealm = ">=2.0.0rc5"
+scipy = ">1.12"
+Shapely = ">2.0"
+tomli-w = ">1.0"
+tqdm = ">4.66"
+types-tabulate = ">0.9"
+xarray = ">2024.6"
 
 [package.source]
-type = "directory"
-url = "virtual_ecosystem"
+type = "git"
+url = "https://github.com/ImperialCollegeLondon/virtual_ecosystem.git"
+reference = "0f4f9ed"
+resolved_reference = "0f4f9ed39896693f966b14fdbc56d53d0378d592"
 
 [[package]]
 name = "virtualenv"
@@ -2661,4 +2705,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<3.13"
-content-hash = "c479eda59864fa3aee10182632960959dc85d91983d2df3349c32923d598d552"
+content-hash = "6026ac8eec13bd4ce2e5cbb052995e3152c6b90dcdb679915676c5dc37fa8099"
