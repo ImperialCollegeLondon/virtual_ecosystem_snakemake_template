@@ -88,7 +88,7 @@ def test_run(ve_run_mock: Mock, ve_exp: VEExperiment) -> None:
     ve_exp.run(input, output)
     ve_run_mock.assert_called_once_with(
         cfg_paths=input,
-        override_params=params,
+        cli_config=params,
         logfile=outpath / "ve_run.log",
     )
 
@@ -136,7 +136,7 @@ def test_run_overlapping_params(ve_run_mock: Mock) -> None:
     exp.run(input, output)
     ve_run_mock.assert_called_once_with(
         cfg_paths=input,
-        override_params=params,
+        cli_config=params,
         logfile=outpath / "ve_run.log",
     )
 

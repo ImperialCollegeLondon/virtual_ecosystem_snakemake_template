@@ -9,7 +9,7 @@ from itertools import product
 from pathlib import Path
 from typing import Any, ClassVar
 
-from virtual_ecosystem.core.config import config_merge
+from virtual_ecosystem.core.config_builder import merge_configuration_dicts
 from virtual_ecosystem.entry_points import ve_run
 
 
@@ -202,9 +202,9 @@ class VEExperiment:
 
         # Set outpath
         outpath_opt = {"core": {"data_output_options": {"out_path": str(outpath)}}}
-        params, conflicts = config_merge(params, outpath_opt)
+        params, conflicts = merge_configuration_dicts(params, outpath_opt)
         if conflicts:
             raise RuntimeError("Outpath config option was set twice")
 
         # Run simulation
-        ve_run(cfg_paths=input, override_params=params, logfile=outpath / self.LOG_FILE)
+        ve_run(cfg_paths=input, cli_config=params, logfile=outpath / self.LOG_FILE)
