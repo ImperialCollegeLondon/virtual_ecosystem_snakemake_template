@@ -18,6 +18,10 @@ pytest-mypy = "^0.10.3"
 numpy = "^2.0"
 ruff = "^0.11.1"
 
+# HACK: These are dependencies for VE, but for some reason seem not to be pulled in
+pyrealm = "^2.0.0"
+pydantic = "^2.12.5"
+
 [tool.mypy]
 ignore_missing_imports = true
 exclude = [".venv/"]
