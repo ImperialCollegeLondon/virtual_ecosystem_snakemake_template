@@ -54,6 +54,13 @@ jobs:
       if: "!cancelled()" # Run this step, even if the previous one fails
       run: poetry run snakemake --cores all
 
+    # Upload out folder
+    - uses: actions/upload-artifact@v6
+      if: "!cancelled()"
+      with:
+        name: out_${{ matrix.os }}_py${{ matrix.python-version }}
+        path: out
+
     - name: Show Snakemake logs
       if: "!cancelled()" # Run this step, even if the previous one fails
       shell: bash
