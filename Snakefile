@@ -11,7 +11,7 @@ CONFIG_PATH = Path(example_data_path) / "config"
 
 # The parameter grid to be used for the simulation
 PARAMS = {
-    "hydrology": {"initial_soil_moisture": (0.5, 0.9)},
+    "hydrology": {"initial_soil_moisture": (0.4, 0.5)},
 }
 exp = VEExperiment("out", PARAMS)
 
