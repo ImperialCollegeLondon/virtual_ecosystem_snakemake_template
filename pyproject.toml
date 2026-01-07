@@ -7,7 +7,7 @@ readme = "README.md"
 package-mode = false
 
 [tool.poetry.dependencies]
-python = ">=3.11,<3.13"
+python = ">=3.11,<4.0"
 snakemake = "^9.14.5"
 pre-commit = "^3.4.0"
 virtual-ecosystem = { git = "https://github.com/ImperialCollegeLondon/virtual_ecosystem.git", rev = "0f4f9ed" }
