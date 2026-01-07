@@ -1768,14 +1768,14 @@ files = [
 
 [[package]]
 name = "snakemake"
-version = "9.0.1"
+version = "9.14.5"
 description = "Workflow management system to create reproducible and scalable data analyses"
 optional = false
 python-versions = ">=3.11"
 groups = ["main"]
 files = [
-    {file = "snakemake-9.0.1-py3-none-any.whl", hash = "sha256:c903627c7c2a85c4eeab5312355ee3b629422e72e778eaa8e719e5fa74f041cb"},
-    {file = "snakemake-9.0.1.tar.gz", hash = "sha256:f1844bf9d779506d446c18d27936b26f9708077f43cf6d38540fb3da05bd0fa3"},
+    {file = "snakemake-9.14.5-py3-none-any.whl", hash = "sha256:a0f23d2250918553d283675051486f75c14f9fc33217a65810fefd52e292d390"},
+    {file = "snakemake-9.14.5.tar.gz", hash = "sha256:f66b181806f02f9d7f43542bd85091a2e65ab126dfcb7bd869a622917d786bfb"},
 ]
 
 [package.dependencies]
@@ -1791,44 +1791,46 @@ immutables = "*"
 jinja2 = ">=3.0,<4.0"
 jsonschema = "*"
 nbformat = "*"
-packaging = "*"
+packaging = ">=24.0"
 psutil = "*"
-pulp = ">=2.3.1,<2.10"
+pulp = ">=2.3.1,<3.4"
 pyyaml = "*"
+referencing = "*"
 requests = ">=2.8.1,<3.0"
 reretry = "*"
 smart-open = ">=4.0,<8.0"
-snakemake-interface-common = ">=1.17.0,<2.0"
+snakemake-interface-common = ">=1.20.1,<2.0"
 snakemake-interface-executor-plugins = ">=9.3.2,<10.0"
-snakemake-interface-logger-plugins = ">=1.1.0,<2.0.0"
-snakemake-interface-report-plugins = ">=1.1.0,<2.0.0"
-snakemake-interface-storage-plugins = ">=3.5.0,<4.0"
+snakemake-interface-logger-plugins = ">=1.1.0,<3.0.0"
+snakemake-interface-report-plugins = ">=1.2.0,<2.0.0"
+snakemake-interface-scheduler-plugins = ">=2.0.0,<3.0.0"
+snakemake-interface-storage-plugins = ">=4.3.2,<5.0"
 tabulate = "*"
 throttler = "*"
 wrapt = "*"
 yte = ">=1.5.5,<2.0"
 
 [package.extras]
-all = ["eido", "peppy", "pygments", "slack_sdk"]
-messaging = ["slack_sdk"]
+all = ["eido", "peppy", "pygments"]
 pep = ["eido", "peppy"]
 reports = ["pygments"]
 
 [[package]]
 name = "snakemake-interface-common"
-version = "1.17.4"
+version = "1.22.0"
 description = "Common functions and classes for Snakemake and its plugins"
 optional = false
-python-versions = "<4.0,>=3.8"
+python-versions = ">=3.8"
 groups = ["main"]
 files = [
-    {file = "snakemake_interface_common-1.17.4-py3-none-any.whl", hash = "sha256:1d757cce0300a73d48b906d1ade38706853169320a5d27b963869888d130c354"},
-    {file = "snakemake_interface_common-1.17.4.tar.gz", hash = "sha256:c2142e1b93cbc18c2cf41d15968ba8688f60b077c8284e5de057cccfc215d4d3"},
+    {file = "snakemake_interface_common-1.22.0-py3-none-any.whl", hash = "sha256:a68c57cba8569536195fc9b7db07bc2a91b56ad811636585dae0313b2ca2e1ce"},
+    {file = "snakemake_interface_common-1.22.0.tar.gz", hash = "sha256:ef1fa710a15629be4cc352b938596ab5235ecf0b615c5845f086d6c5da10cb88"},
 ]
 
 [package.dependencies]
-argparse-dataclass = ">=2.0.0,<3.0.0"
-ConfigArgParse = ">=1.7,<2.0"
+argparse-dataclass = ">=2.0.0"
+ConfigArgParse = ">=1.7"
+packaging = ">=24.0,<26.0"
 
 [[package]]
 name = "snakemake-interface-executor-plugins"
@@ -1864,36 +1866,51 @@ snakemake-interface-common = ">=1.17.4"
 
 [[package]]
 name = "snakemake-interface-report-plugins"
-version = "1.1.0"
+version = "1.3.0"
 description = "The interface for Snakemake report plugins."
 optional = false
 python-versions = "<4.0,>=3.11"
 groups = ["main"]
 files = [
-    {file = "snakemake_interface_report_plugins-1.1.0-py3-none-any.whl", hash = "sha256:00749eb3c5c7ce465757d0fc9f04e6c4d3f5af4f463809c34b92c8b5efea0fd5"},
-    {file = "snakemake_interface_report_plugins-1.1.0.tar.gz", hash = "sha256:b1ee444b2fca51225cf8a102f8e56633791d01433cd00cf07a1d9713a12313a5"},
+    {file = "snakemake_interface_report_plugins-1.3.0-py3-none-any.whl", hash = "sha256:78da3931f70e79eef51e5645a40b172929e555fe4d86ff45d6b856e521a379db"},
+    {file = "snakemake_interface_report_plugins-1.3.0.tar.gz", hash = "sha256:fc9495298bec4e69721ab8afe6d6d88a86966fda2eeb003db56b9a88b86d5934"},
 ]
 
 [package.dependencies]
 snakemake-interface-common = ">=1.16.0,<2.0.0"
 
 [[package]]
-name = "snakemake-interface-storage-plugins"
-version = "3.5.0"
-description = "This package provides a stable interface for interactions between Snakemake and its storage plugins."
+name = "snakemake-interface-scheduler-plugins"
+version = "2.0.2"
+description = "Scheduler plugin interface for snakemake"
 optional = false
 python-versions = "<4.0,>=3.11"
 groups = ["main"]
 files = [
-    {file = "snakemake_interface_storage_plugins-3.5.0-py3-none-any.whl", hash = "sha256:90841b6333c60e5859f81eec5f63d66e8bd29108f40fe922862d31c0f761b1ca"},
-    {file = "snakemake_interface_storage_plugins-3.5.0.tar.gz", hash = "sha256:88ee1dde95f9d5abb03113c52fb8cfa78ee502cce9ec788c161b3c09076fc075"},
+    {file = "snakemake_interface_scheduler_plugins-2.0.2-py3-none-any.whl", hash = "sha256:b9ddfa508bd480711de1770dfb24f3b813cfa3cd0f862f0127ef721ae5346915"},
+    {file = "snakemake_interface_scheduler_plugins-2.0.2.tar.gz", hash = "sha256:2797e8fa9019d983132c2b403f14d6fcd3c5ad4c8d8a66b984b4740a71cacc46"},
 ]
 
 [package.dependencies]
-reretry = ">=0.11.8,<0.12.0"
-snakemake-interface-common = ">=1.12.0,<2.0.0"
-throttler = ">=1.2.2,<2.0.0"
-wrapt = ">=1.15.0,<2.0.0"
+snakemake-interface-common = ">=1.20.1,<2.0"
+
+[[package]]
+name = "snakemake-interface-storage-plugins"
+version = "4.3.2"
+description = "This package provides a stable interface for interactions between Snakemake and its storage plugins."
+optional = false
+python-versions = ">=3.11"
+groups = ["main"]
+files = [
+    {file = "snakemake_interface_storage_plugins-4.3.2-py3-none-any.whl", hash = "sha256:bd185233cb7882a58d79294ad2f8d1cead535744fe3c9d42d9ef51bc8f1744b1"},
+    {file = "snakemake_interface_storage_plugins-4.3.2.tar.gz", hash = "sha256:2f45c6b784e2af5b6e7102d3cb700d597b7cf7515fcf02d7d1153065e90a7895"},
+]
+
+[package.dependencies]
+reretry = ">=0.11.8"
+snakemake-interface-common = ">=1.12.0"
+throttler = ">=1.2.2"
+wrapt = ">=1.15.0"
 
 [[package]]
 name = "tabulate"
@@ -2207,4 +2224,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<3.12"
-content-hash = "f090fbae93c534aac905aa984201a5d34f148953b6c1973c2ffdc09b7200e9fb"
+content-hash = "288c61790f5cb69beebcb11c6b554bf579e8274f538449781aeab41890f98d7a"
