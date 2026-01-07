@@ -123,7 +123,7 @@ def _get_outpath_with_wildcards(out_path_root: str, param_names: Iterable[str]) 
 class VEExperiment:
     """Represents all parameter sets which are being tested."""
 
-    MERGE_CONFIG_FILE = "vr_full_model_configuration.toml"
+    MERGE_CONFIG_FILE = "ve_full_model_configuration.toml"
     LOG_FILE = "ve_run.log"
     OUTPUT_FILES: ClassVar = {
         MERGE_CONFIG_FILE,

@@ -20,7 +20,7 @@ PARAMS: dict = {
 NB: Deliberately not in alphabetical order, as params should be sorted.
 """
 OUTPUT_FILES = (
-    "vr_full_model_configuration.toml",
+    "ve_full_model_configuration.toml",
     "initial_state.nc",
     "final_state.nc",
     "all_continuous_data.nc",
