@@ -23,14 +23,7 @@ Then you will need to clone either your own repository or, if you have not made 
 copy, this one, e.g.:
 
 ```sh
-git clone --recursive https://github.com/ImperialCollegeLondon/virtual_ecosystem_snakemake_template.git
-```
-
-Note the extra `--recursive` flag! If you forgot to check out the submodules, you can do
-so later by running:
-
-```sh
-git submodule update --init
+git clone https://github.com/ImperialCollegeLondon/virtual_ecosystem_snakemake_template.git
 ```
 
 Then you can install dependencies via [Poetry]:
