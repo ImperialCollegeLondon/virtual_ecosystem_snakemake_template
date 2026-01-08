@@ -1,21 +1,23 @@
-[tool.poetry]
+[project]
 name = "virtual-ecosystem-snakemake-template"
-version = "0.1.0"
 description = "A template repository for running Virtual Ecosystem analyses using Snakemake."
-authors = ["Alex Dewar <a.dewar@imperial.ac.uk>"]
+version = "0.1.0"
 readme = "README.md"
-package-mode = false
+authors = [{ name = "Alex Dewar", email = "a.dewar@imperial.ac.uk" }]
+requires-python = '>=3.11,<4.0'
+dependencies = [
+  'snakemake (>=9.14.5,<10.0.0)',
+  'pre-commit (>=4.5.1,<5.0.0)',
+  'virtual-ecosystem @ git+https://github.com/ImperialCollegeLondon/virtual_ecosystem.git@0f4f9ed',
+  'mypy (>=1.5.1,<2.0.0)',
+  'pytest (>=8.3.5,<9.0.0)',
+  'pytest-cov (>=7.0.0,<8.0.0)',
+  'numpy (>=2.0,<3.0)',
+  'ruff (>=0.14.10,<0.15.0)',
+]
 
-[tool.poetry.dependencies]
-python = ">=3.11,<4.0"
-snakemake = "^9.14.5"
-pre-commit = "^4.5.1"
-virtual-ecosystem = { git = "https://github.com/ImperialCollegeLondon/virtual_ecosystem.git", rev = "0f4f9ed" }
-mypy = "^1.5.1"
-pytest = "^8.3.5"
-pytest-cov = "^7.0.0"
-numpy = "^2.0"
-ruff = "^0.14.10"
+[tool.poetry]
+package-mode = false
 
 [tool.mypy]
 ignore_missing_imports = true
