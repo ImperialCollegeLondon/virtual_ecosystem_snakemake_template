@@ -1,4 +1,4 @@
-name: Test and build
+name: Test and run
 
 on:
   push:
@@ -17,8 +17,8 @@ jobs:
       - uses: gaurav-nelson/github-action-markdown-link-check@v1
         name: Check links in markdown files
         with:
-          use-quiet-mode: 'yes'
-          use-verbose-mode: 'yes'
+          use-quiet-mode: yes
+          use-verbose-mode: yes
 
   test:
     runs-on: ${{ matrix.os }}
@@ -26,49 +26,50 @@ jobs:
       fail-fast: false
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
-        python-version: ["3.11", "3.12", "3.13", "3.14"]
+        python-version: ['3.11', '3.12', '3.13', '3.14']
 
     steps:
-    - uses: actions/checkout@v6
-      with:
-        submodules: true
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
 
-    - name: Install Poetry
-      run: pipx install poetry
+      - name: Install Poetry
+        run: pipx install poetry
 
-    - uses: actions/setup-python@v6
-      with:
-        python-version: ${{ matrix.python-version }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: poetry
 
-    - name: Install dependencies
-      run: poetry install
+      - name: Install dependencies
+        run: poetry install
 
-    - name: Run tests
-      run: poetry run pytest --cov-report=xml
+      - name: Run tests
+        run: poetry run pytest --cov-report=xml
 
-    - name: Upload coverage to Codecov
-      if: matrix.os == 'ubuntu-latest' && success()
-      uses: codecov/codecov-action@v5
+      - name: Upload coverage to Codecov
+        if: matrix.os == 'ubuntu-latest' && success()
+        uses: codecov/codecov-action@v5
 
-    - name: Run Snakemake with example data
-      if: "!cancelled()" # Run this step, even if the previous one fails
-      run: poetry run snakemake --cores all
+      - name: Run Snakemake with example data
+        if: '!cancelled()' # Run this step, even if the previous one fails
+        run: poetry run snakemake --cores all
 
     # Upload out folder
-    - uses: actions/upload-artifact@v6
-      if: "!cancelled()"
-      with:
-        name: out_${{ matrix.os }}_py${{ matrix.python-version }}
-        path: out
+      - uses: actions/upload-artifact@v6
+        if: '!cancelled()'
+        with:
+          name: out_${{ matrix.os }}_py${{ matrix.python-version }}
+          path: out
 
-    - name: Show Snakemake logs
-      if: "!cancelled()" # Run this step, even if the previous one fails
-      shell: bash
-      run: |
-        if [ -d .snakemake/log/ ]; then
-            for f in .snakemake/log/*.log; do
-                echo ======== $f ========
-                cat $f
-                echo ======== END ========
-            done
-        fi
+      - name: Show Snakemake logs
+        if: '!cancelled()' # Run this step, even if the previous one fails
+        shell: bash
+        run: |
+          if [ -d .snakemake/log/ ]; then
+              for f in .snakemake/log/*.log; do
+                  echo ======== $f ========
+                  cat $f
+                  echo ======== END ========
+              done
+          fi

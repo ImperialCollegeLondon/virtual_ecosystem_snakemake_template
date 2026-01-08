@@ -1,4 +1,4 @@
 set-resources:
   ve:
     mem_mb: 2000
-    runtime: "15m"
+    runtime: 15m
