@@ -14,7 +14,6 @@ virtual-ecosystem = { git = "https://github.com/ImperialCollegeLondon/virtual_ec
 mypy = "^1.5.1"
 pytest = "^8.3.5"
 pytest-cov = "^7.0.0"
-pytest-mypy = "^0.10.3"
 numpy = "^2.0"
 ruff = "^0.14.10"
 
@@ -36,7 +35,7 @@ lint.ignore = ["D203", "D213"]
 lint.pydocstyle.convention = "google"
 
 [tool.pytest.ini_options]
-addopts = "-v --mypy -p no:warnings --cov=snakemake_helper --cov-report=html --doctest-modules snakemake_helper tests"
+addopts = "-v -p no:warnings --cov=snakemake_helper --cov-report=html --doctest-modules snakemake_helper tests"
 
 [build-system]
 requires = ["poetry-core"]
