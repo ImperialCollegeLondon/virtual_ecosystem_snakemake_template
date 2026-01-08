@@ -25,6 +25,6 @@ rule ve:
     input:
         CONFIG_PATH,
     output:
-        exp.output,
+        directory(exp.output),
     run:
         exp.run(input, output)
