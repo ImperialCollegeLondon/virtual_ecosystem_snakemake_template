@@ -25,12 +25,12 @@ exclude = [".venv/"]
 [tool.ruff]
 target-version = "py311"
 lint.select = [
-    "D",   # pydocstyle
-    "E",   # pycodestyle
-    "F",   # Pyflakes
-    "I",   # isort
-    "UP",  # pyupgrade
-    "RUF", # ruff
+  "D",   # pydocstyle
+  "E",   # pycodestyle
+  "F",   # Pyflakes
+  "I",   # isort
+  "UP",  # pyupgrade
+  "RUF", # ruff
 ]
 lint.ignore = ["D203", "D213"]
 lint.pydocstyle.convention = "google"
