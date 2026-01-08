@@ -1,16 +1,14 @@
-"""Helper functionality for using Virtual Rainforest with Snakemake.
+"""Helper functionality for using Virtual Ecosystem with Snakemake.
 
 The main functionality for this module lies in the VRExperiment class, which represents
 all the parameter sets which are being tested.
 """
 
+import subprocess as sp
 from collections.abc import Iterable, Sequence
 from itertools import product
 from pathlib import Path
-from typing import Any, ClassVar
-
-from virtual_rainforest.core.config import config_merge
-from virtual_rainforest.entry_points import vr_run
+from typing import Any
 
 
 def _permute_parameter_grid(
@@ -120,18 +118,8 @@ def _get_outpath_with_wildcards(out_path_root: str, param_names: Iterable[str]) 
     return str(outpath)
 
 
-class VRExperiment:
+class VEExperiment:
     """Represents all parameter sets which are being tested."""
-
-    MERGE_CONFIG_FILE = "vr_full_model_configuration.toml"
-    LOG_FILE = "vr_run.log"
-    OUTPUT_FILES: ClassVar = {
-        MERGE_CONFIG_FILE,
-        LOG_FILE,
-        "initial_state.nc",
-        "final_state.nc",
-        "all_continuous_data.nc",
-    }
 
     def __init__(self, out_path_root: str, param_grid: dict[str, Any]):
         """Create a new VRExperiment.
@@ -151,11 +139,8 @@ class VRExperiment:
 
     @property
     def all_outputs(self) -> list[str]:
-        """Get all output files for the whole experiment."""
-        return [
-            str(dir / file)
-            for dir, file in product(self._param_set_dict.keys(), self.OUTPUT_FILES)
-        ]
+        """Get all output directories, covering each parameter set."""
+        return list(map(str, self._param_set_dict.keys()))
 
     def _get_param_set_dict(
         self, params_flat: dict[str, Iterable]
@@ -181,30 +166,34 @@ class VRExperiment:
         return self._outpath
 
     @property
-    def output(self) -> list[str]:
-        """Get outputs with wildcards for parameter values."""
-        return [str(Path(self._outpath) / f) for f in self.OUTPUT_FILES]
+    def output(self) -> str:
+        """Get output directory with wildcards for parameter values."""
+        return self._outpath
 
     def run(self, input: Sequence[str], output: Sequence[str]):
         """Run a simulation for the specified config to be saved in output.
+
+        Virtual Ecosystem is launched as a separate process, rather than invoked from
+        the current Python interpreter, to avoid  problems with multiprocessing on
+        Windows.
 
         Args:
             input: Input paths
             output: Output paths
         """
-        outpath = Path(output[0]).parent
-        if not all(Path(path).parent == outpath for path in output):
-            raise RuntimeError("Output files are not all in same folder")
-        if not all(Path(path).name in self.OUTPUT_FILES for path in output):
-            raise RuntimeError("Unknown file given as output")
+        if len(input) != 1:
+            raise RuntimeError("Exactly one input must be provided")
+        if len(output) != 1:
+            raise RuntimeError("Exactly one output must be provided")
 
+        outpath = Path(output[0])
+        outpath.mkdir(parents=True)
+
+        args = ["ve_run", "-o", str(outpath)]
         params = self._param_set_dict[outpath]
+        for key, val in _flatten_dict(params).items():
+            args.extend(("-c", f"{key}={val!s}"))
+        args.append(input[0])
 
-        # Set outpath
-        outpath_opt = {"core": {"data_output_options": {"out_path": str(outpath)}}}
-        params, conflicts = config_merge(params, outpath_opt)
-        if conflicts:
-            raise RuntimeError("Outpath config option was set twice")
-
-        # Run simulation
-        vr_run(cfg_paths=input, override_params=params, logfile=outpath / self.LOG_FILE)
+        # Launch Virtual Ecosystem as subprocess
+        sp.run(args, check=True)
