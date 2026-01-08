@@ -1,6 +1,6 @@
-cluster: ./pbs-submit.py {threads} {resources.mem_mb} {resources.runtime}
-cluster-cancel: qdel
+cluster: "/rds/general/user/adewar/home/virtual_rainforest_snakemake_template/pbs-icl/pbs-submit.py {threads} {resources.mem_mb} {resources.runtime}"
 jobs: 500
+
 default-resources:
   # Imperial's cluster requires a runtime to be specified, so provide a default value of
   # 15 minutes
