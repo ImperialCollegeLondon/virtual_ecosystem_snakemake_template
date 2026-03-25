@@ -56,7 +56,7 @@ jobs:
         run: poetry run snakemake --cores all
 
     # Upload out folder
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         if: '!cancelled()'
         with:
           name: out_${{ matrix.os }}_py${{ matrix.python-version }}
