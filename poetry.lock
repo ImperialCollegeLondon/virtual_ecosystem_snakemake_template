@@ -2131,18 +2131,6 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
-name = "reretry"
-version = "0.11.8"
-description = "An easy to use, but functional decorator for retrying on exceptions."
-optional = false
-python-versions = ">=3.7"
-groups = ["main"]
-files = [
-    {file = "reretry-0.11.8-py2.py3-none-any.whl", hash = "sha256:5ec1084cd9644271ee386d34cd5dd24bdb3e91d55961b076d1a31d585ad68a79"},
-    {file = "reretry-0.11.8.tar.gz", hash = "sha256:f2791fcebe512ea2f1d153a2874778523a8064860b591cd90afc21a8bed432e3"},
-]
-
-[[package]]
 name = "rpds-py"
 version = "0.30.0"
 description = "Python bindings to Rust's persistent data structures (rpds)"
@@ -2501,14 +2489,14 @@ files = [
 
 [[package]]
 name = "snakemake"
-version = "9.17.2"
+version = "9.19.0"
 description = "Workflow management system to create reproducible and scalable data analyses"
 optional = false
 python-versions = ">=3.11"
 groups = ["main"]
 files = [
-    {file = "snakemake-9.17.2-py3-none-any.whl", hash = "sha256:c58dbd8cfbca898897820d9bca3f98251fa7cb5086cbe723bf57f55465827edf"},
-    {file = "snakemake-9.17.2.tar.gz", hash = "sha256:956a342b57ea76974ed21d048c374f1417410b57b50be3c6fb3b7ea7b9192d8c"},
+    {file = "snakemake-9.19.0-py3-none-any.whl", hash = "sha256:b34bb734d2a7003a0c940b66be853581ee041cf3e01c702fdb86e7ad9e6d6a27"},
+    {file = "snakemake-9.19.0.tar.gz", hash = "sha256:c7d3fbbf00b1bdf992bc61b9dcee21b5c3fb95a038cd58d53c6369a7c4f0609e"},
 ]
 
 [package.dependencies]
@@ -2536,7 +2524,7 @@ snakemake-interface-executor-plugins = ">=9.3.2,<10.0"
 snakemake-interface-logger-plugins = ">=1.1.0,<3.0.0"
 snakemake-interface-report-plugins = ">=1.2.0,<2.0.0"
 snakemake-interface-scheduler-plugins = ">=2.0.0,<3.0.0"
-snakemake-interface-storage-plugins = ">=4.3.2,<5.0"
+snakemake-interface-storage-plugins = ">=4.4.1,<5.0"
 sqlmodel = ">=0.0.37,<0.0.38"
 tabulate = "*"
 tenacity = ">=9.1.4,<10.0"
@@ -2630,19 +2618,20 @@ snakemake-interface-common = ">=1.20.1,<2.0"
 
 [[package]]
 name = "snakemake-interface-storage-plugins"
-version = "4.3.2"
+version = "4.4.1"
 description = "This package provides a stable interface for interactions between Snakemake and its storage plugins."
 optional = false
-python-versions = ">=3.11"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "snakemake_interface_storage_plugins-4.3.2-py3-none-any.whl", hash = "sha256:bd185233cb7882a58d79294ad2f8d1cead535744fe3c9d42d9ef51bc8f1744b1"},
-    {file = "snakemake_interface_storage_plugins-4.3.2.tar.gz", hash = "sha256:2f45c6b784e2af5b6e7102d3cb700d597b7cf7515fcf02d7d1153065e90a7895"},
+    {file = "snakemake_interface_storage_plugins-4.4.1-py3-none-any.whl", hash = "sha256:6e075f448543cc3d0cb1ee5e6e5a83af9761e7085f3ce0922011685d098f231e"},
+    {file = "snakemake_interface_storage_plugins-4.4.1.tar.gz", hash = "sha256:b2b5bf05318af36955ebf2ce76c921c0fb06904ca98fb30e1657d88b7b7b6945"},
 ]
 
 [package.dependencies]
-reretry = ">=0.11.8"
+humanfriendly = ">=10.0,<11"
 snakemake-interface-common = ">=1.12.0"
+tenacity = ">=9.1.4,<10.0"
 throttler = ">=1.2.2"
 wrapt = ">=1.15.0"
 
