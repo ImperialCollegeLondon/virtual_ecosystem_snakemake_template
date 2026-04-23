@@ -7,7 +7,7 @@ authors = [{ name = "Alex Dewar", email = "a.dewar@imperial.ac.uk" }]
 requires-python = '>=3.11,<4.0'
 dependencies = [
   'snakemake (>=9.14.5,<10.0.0)',
-  'pre-commit (>=4.5.1,<5.0.0)',
+  'pre-commit (>=4.6.0,<5.0.0)',
   'virtual-ecosystem @ git+https://github.com/ImperialCollegeLondon/virtual_ecosystem.git@0f4f9ed',
   'mypy (>=1.5.1,<2.0.0)',
   'pytest (>=8.3.5,<9.0.0)',
